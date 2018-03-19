@@ -1,28 +1,33 @@
 var timeout=null;  //timeroutfunction
-var vlSpec ={
- "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
- "data": { "name": "table","format": {
+var vlSpec = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {
+    "name": "table",
+    "format": {
       "parse": {
         "date": "utc:'%Q'"
       }
     }
-   },
- "width": 1000,
-  "height":500,
+  },
+  "width":1000,
+  "height": 100,
   "mark": "line",
   "encoding": {
     "x": {
-      "timeUnit":"utcyearmonthdatehoursminutessecondsmilliseconds",
+      "timeUnit": "utcdatehoursminutesseconds",
       "field": "date",
       "type": "temporal"
     },
     "y": {
-      "field": "value",
+      "field": "temp",
       "type": "quantitative"
+    },
+    "color": {
+        "field": "symbol",
+        "type": "nominal"
     }
   }
-  };
-
+}
 
   function reRender(res,newEntries){
      console.log('Starting to (re)render the visualization');
@@ -38,7 +43,7 @@ var vlSpec ={
       if(timeout!=null){  //halt current render process
        clearTimeout(timeout);
      }
-       var newEntry= {'date':line.split(',')[0],'value':line.split(',')[1]};
+       var newEntry= {'date':line.split(',')[0],'temp':line.split(',')[2], 'light':line.split(',')[1]};
        newEntries.push(newEntry); // add new data entry
        timeout = setTimeout(reRender, 100,res,newEntries); // launch new data render
     });
