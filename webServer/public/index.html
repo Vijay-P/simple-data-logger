@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-  <title>Vega Lite Bar Chart</title>
+  <title>Refrigerator Monitor</title>
   <meta charset="utf-8">
 
   <script src="https://cdn.jsdelivr.net/npm/vega@3.1.0/build/vega.js"></script>
@@ -16,9 +16,16 @@
   </style>
 </head>
 <body>
-  <h1>Template for using Vega-Lite to display data in near to realtime served by a node.js server.</h1>
+  <h1>Refrigerator Temperature and Light Level</h1>
   <!-- Container for the visualization -->
   <div id="vis"></div>
+  <div id="info">
+  <h2>Legend:</h2>
+  <p>
+    red: light <br />
+    blue: temperature
+  </p>
+  </div>
   <script src="client.js"></script>
 </body>
 </html>
